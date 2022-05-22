@@ -23,9 +23,8 @@ if(localStorage.getItem("bestBrain")) {
         }
     }
 }
-else {
-    cars[0].brain = JSON.parse("trainedBrain.txt");
-}
+
+cars[0].brain = JSON.parse("trainedBrain.txt");
 
 
 
