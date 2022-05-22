@@ -12,8 +12,6 @@ const road= new Road(carCanvas.width/2, carCanvas.width*0.9);
 N=20;
 const cars = generateCars(N);
 
-const trainedBrain = new TrainedNetwork([5, 6, 4]);
-
 let bestCar=cars[0];
 if(localStorage.getItem("bestBrain")) {
     for (let i=0; i<cars.length;i++) {
@@ -21,15 +19,15 @@ if(localStorage.getItem("bestBrain")) {
             localStorage.getItem("bestBrain"));
         
             if (i!=0) {
-            NeuralNetwork.mutate(cars[i].brain,0.05);
+            NeuralNetwork.mutate(cars[i].brain,0.1);
         }
     }
-    
-    
 }
 else {
-    cars[0].brain = trainedBrain;
+    cars[0].brain = JSON.parse("trainedBrain.txt");
 }
+
+
 
 const traffic=[
     new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2, getRandomColor()),
@@ -48,6 +46,7 @@ function save() {
     localStorage.setItem("bestBrain",
         JSON.stringify(bestCar.brain)
     );
+
 }
 
 function discard() {

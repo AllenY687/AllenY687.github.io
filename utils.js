@@ -54,3 +54,11 @@ function getRandomColor() {
     const hue=290+Math.random()*260;
     return "hsl(" +hue+", 100%, 60%";
 }
+
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
